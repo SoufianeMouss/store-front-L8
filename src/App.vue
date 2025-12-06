@@ -161,7 +161,7 @@ a {
 
 button {
   padding: 10px;
-  background-color: #005f8b;
+  background-color: #3c673cd7;
   color: #fff;
   border: none;
   border-radius: 5px;
