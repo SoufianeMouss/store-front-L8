@@ -1,12 +1,12 @@
 <template>
   <TopNav :cartItemCount="cartItemCount"/>
   <router-view
-    :products="products"
-    :cartItems="cartItems"
-    @addToCart="addToCart"
-    @removeFromCart="removeFromCart"
-    @submitOrder="submitOrder"
-  ></router-view>
+  :products="products"
+  :cartItems="cartItems"
+  @addToCart="addToCart"
+  @removeFromCart="removeFromCart"
+  @submitOrder="submitOrder"
+></router-view>
 </template>
 
 <script>
@@ -28,7 +28,38 @@ export default {
       return this.cartItems.reduce((total, item) => {
         return total + item.quantity
       }, 0)
+    },
+  filteredProducts() {
+    if (!this.products || this.products.length === 0) {
+      return []
     }
+
+    const path = this.$route.path
+
+    // Laptops route
+    if (path === '/laptops') {
+      return this.products.filter(p => {
+        const name = (p.name || '').toLowerCase()
+        return name.includes('laptop') || name.includes('macbook')
+      })
+    }
+
+    // Phones route
+    if (path === '/phones') {
+      return this.products.filter(p => {
+        const name = (p.name || '').toLowerCase()
+        return name.includes('iphone') || name.includes('galaxy') || name.includes('phone')
+      })
+    }
+
+    // Deals route (example: anything cheaper than $800)
+    if (path === '/deals') {
+      return this.products.filter(p => p.price && p.price < 800)
+    }
+
+    // Default: all products (home page, product details, etc.)
+    return this.products
+  }
   },
   mounted() {
     this.getProducts()
@@ -109,7 +140,8 @@ export default {
 
 <style>
 body {
-  background-image: url('@/assets/algonquin.jpg');
+  /*background-image: url('@/assets/algonquin.jpg');*/
+  background-color: #ffffff;
   background-size: cover;
   background-position: center;
   background-attachment: fixed; /* Keeps the background in place when scrolling */

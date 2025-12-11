@@ -1,94 +1,119 @@
 <template>
-  <nav>
+  <nav class="top-nav">
     <div class="logo">
-      <a href="/">
-        <img src="/algonquin-pet-store.png" alt="Algonquin Pet Store Logo">
-      </a>
+      <router-link to="/">
+        <img src="/logo.png" alt="Best Buy Logo" />
+      </router-link>
     </div>
-    <button class="hamburger" @click="toggleNav">
+
+    <!-- Hamburger (mobile) -->
+    <button class="hamburger" @click="toggleNav" aria-label="Toggle navigation">
       <span class="hamburger-icon"></span>
     </button>
+
+    <!-- Desktop + mobile menu -->
     <ul class="nav-links" :class="{ 'nav-links--open': isNavOpen }">
-      <li><router-link to="/" @click="closeNav">Products</router-link></li>
-      <li><router-link to="/cart" @click="closeNav">Cart ({{ cartItemCount }})</router-link></li>
+
+      <!-- Updated menu items -->
+      <li><router-link to="/" @click.native="closeNav">All Products</router-link></li>
+      <li><router-link to="/deals" @click.native="closeNav">Deals</router-link></li>
+      <li><router-link to="/laptops" @click.native="closeNav">Laptops</router-link></li>
+      <li><router-link to="/phones" @click.native="closeNav">Phones</router-link></li>
+      <li><router-link to="/admin" @click.native="closeNav">Admin</router-link></li>
+
+      <li><router-link to="/cart" @click.native="closeNav">Cart ({{ cartItemCount }})</router-link></li>
+
     </ul>
   </nav>
 </template>
 
 <script>
 export default {
-  name: 'TopNav',
-  props: ['cartItemCount'],
+  name: "TopNav",
+  props: {
+    cartItemCount: {
+      type: Number,
+      default: 0,
+    },
+  },
   data() {
     return {
-      isNavOpen: false
-    }
+      isNavOpen: false,
+    };
   },
   methods: {
     toggleNav() {
-      this.isNavOpen = !this.isNavOpen
+      this.isNavOpen = !this.isNavOpen;
     },
     closeNav() {
-      this.isNavOpen = false
-    }
-  }
-}
+      this.isNavOpen = false;
+    },
+  },
+};
 </script>
 
 <style scoped>
-nav {
+.top-nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #3c673cd7;
+  background-color: #0046be; /* Best Buy blue */
   color: #fff;
-  padding-top: 0.5rem;
-  padding-left: 1rem;
-  padding-right: 1rem;
-  padding-bottom: 0.25rem;
+  padding: 0.5rem 1rem;
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
+  z-index: 1000;
 }
 
-nav img {
+/* Logo */
+.logo img {
   width: 60px;
   height: auto;
 }
 
+/* Menu (desktop) */
 .nav-links {
   display: flex;
+  align-items: center;
   list-style: none;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-size: 1rem;
+  font-weight: 600;
+  gap: 1.5rem;
 }
 
+.nav-links li a {
+  color: #fff;
+  text-decoration: none;
+}
+
+.nav-links li a.router-link-active {
+  border-bottom: 2px solid #ffeb3b; /* highlight active link */
+}
+
+/* Hamburger button (hidden on desktop) */
 .hamburger {
   display: none;
   background: none;
   border: none;
   cursor: pointer;
   padding: 0;
-  margin: 0;
-  margin-top: -40px;
 }
 
 .hamburger-icon {
   display: block;
-  width: 20px;
+  width: 22px;
   height: 2px;
   background-color: #fff;
   position: relative;
-  top: 50%;
-  transform: translateY(-50%);
 }
 
 .hamburger-icon::before,
 .hamburger-icon::after {
-  content: '';
+  content: "";
   display: block;
-  width: 20px;
+  width: 22px;
   height: 2px;
   background-color: #fff;
   position: absolute;
@@ -100,25 +125,27 @@ nav img {
 }
 
 .hamburger-icon::after {
-  bottom: -6px;
+  top: 6px;
 }
 
+/* Mobile behaviour */
 @media (max-width: 768px) {
   .nav-links {
     display: none;
+    flex-direction: column;
     position: absolute;
     top: 100%;
-    left: 0;
     right: 0;
-    background-color: #333;
-    padding: 1rem;
+    left: 0;
+    background-color: #0046be;
+    padding: 0.75rem 1rem 1rem;
   }
 
   .nav-links--open {
-    display: block;
+    display: flex;
   }
 
-  .nav-links--open li {
+  .nav-links li {
     padding: 0.5rem 0;
   }
 

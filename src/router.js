@@ -7,6 +7,10 @@ const routes = [
   { path: "/", component: ProductList },
   { path: "/product/:id", component: ProductDetail },
   { path: "/cart", component: ShoppingCart },
+  { path: '/deals', component: ProductList },
+  { path: '/laptops', component: ProductList },
+  { path: '/phones', component: ProductList },
+  { path: '/admin', component: AdminPage },
 ];
 
 const router = createRouter({
