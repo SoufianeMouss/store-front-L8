@@ -1,24 +1,29 @@
 <template>
-  <TopNav :cartItemCount="cartItemCount"/>
-  <router-view
-  :products="products"
-  :cartItems="cartItems"
-  @addToCart="addToCart"
-  @removeFromCart="removeFromCart"
-  @submitOrder="submitOrder"
-></router-view>
-<Footer />
+  <div id="app-root">
+    <TopNav :cartItemCount="cartItemCount" />
+
+    <router-view
+      :products="filteredProducts"
+      :cartItems="cartItems"
+      @addToCart="addToCart"
+      @removeFromCart="removeFromCart"
+      @submitOrder="submitOrder"
+    ></router-view>
+
+    <AppFooter />
+  </div>
 </template>
 
 <script>
 import TopNav from './components/TopNav.vue'
-import Footer from './components/Footer.vue'
+import AppFooter from './components/Footer.vue'
+
 
 export default {
   name: 'App',
   components: {
     TopNav,
-    Footer
+    AppFooter
   },
   data() {
     return {

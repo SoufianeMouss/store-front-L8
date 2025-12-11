@@ -9,11 +9,17 @@
       <div class="footer-right">
         <a href="https://github.com/SoufianeMouss" target="_blank">GitHub</a>
         <span>•</span>
-        <a href="https://bestbuy.ca" target="_blank">BestBuy.ca</a>
+        <a href="https://www.bestbuy.ca" target="_blank">BestBuy.ca</a>
       </div>
     </div>
   </footer>
 </template>
+
+<script>
+export default {
+  name: 'AppFooter' // ✅ multi-word name, ESLint is happy
+}
+</script>
 
 <style scoped>
 .footer {
