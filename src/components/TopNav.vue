@@ -2,7 +2,7 @@
   <nav class="top-nav">
     <div class="logo">
       <router-link to="/">
-        <img src="/logo.png" alt="Best Buy Logo" />
+        <img src="/new_logo.png" alt="Best Buy Logo" />
       </router-link>
     </div>
 
