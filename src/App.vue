@@ -7,15 +7,18 @@
   @removeFromCart="removeFromCart"
   @submitOrder="submitOrder"
 ></router-view>
+<Footer />
 </template>
 
 <script>
 import TopNav from './components/TopNav.vue'
+import Footer from './components/Footer.vue'
 
 export default {
   name: 'App',
   components: {
-    TopNav
+    TopNav,
+    Footer
   },
   data() {
     return {
@@ -156,6 +159,7 @@ body {
   text-align: center;
   color: #2c3e50;
   margin-top: 120px;
+  margin-bottom: 60px; /* space for footer */
 }
 
 footer {

@@ -15,13 +15,13 @@
     <ul class="nav-links" :class="{ 'nav-links--open': isNavOpen }">
 
       <!-- Updated menu items -->
-      <li><router-link to="/" @click.native="closeNav">All Products</router-link></li>
-      <li><router-link to="/deals" @click.native="closeNav">Deals</router-link></li>
-      <li><router-link to="/laptops" @click.native="closeNav">Laptops</router-link></li>
-      <li><router-link to="/phones" @click.native="closeNav">Phones</router-link></li>
-      <li><router-link to="/admin" @click.native="closeNav">Admin</router-link></li>
+      <li><router-link to="/" @click="closeNav">All Products</router-link></li>
+      <li><router-link to="/deals" @click="closeNav">Deals</router-link></li>
+      <li><router-link to="/laptops" @click="closeNav">Laptops</router-link></li>
+      <li><router-link to="/phones" @click="closeNav">Phones</router-link></li>
+      <li><router-link to="/admin" @click="closeNav">Admin</router-link></li>
+      <li><router-link to="/cart" @click="closeNav">Cart ({{ cartItemCount }})</router-link></li>
 
-      <li><router-link to="/cart" @click.native="closeNav">Cart ({{ cartItemCount }})</router-link></li>
 
     </ul>
   </nav>
